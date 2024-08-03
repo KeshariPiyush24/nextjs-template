@@ -3,17 +3,17 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "eslint . --config eslint.config.mjs",
-        "lint:fix": "eslint . --config eslint.config.mjs --fix",
-        "format": "prettier --write .",
-        "type-check": "tsc --noEmit",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "e2e": "cypress run",
-        "e2e:open": "cypress open"
+        "dev": "bun run next dev",
+        "build": "bun run next build",
+        "start": "bun run next start",
+        "lint": "bun run eslint . --config eslint.config.mjs",
+        "lint:fix": "bun run eslint . --config eslint.config.mjs --fix",
+        "format": "bun run prettier --write .",
+        "type-check": "bun run tsc --noEmit",
+        "test": "bun run jest",
+        "test:watch": "bun run jest --watch",
+        "e2e": "bun run cypress run",
+        "e2e:open": "bun run cypress open"
     },
     "dependencies": {
         "@ant-design/icons": "^5.4.0",
@@ -70,11 +70,11 @@
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
-            "eslint --fix",
-            "prettier --write"
+            "bun run eslint --fix",
+            "bun run prettier --write"
         ],
         "*.{json,md}": [
-            "prettier --write"
+            "bun run prettier --write"
         ]
     }
 }

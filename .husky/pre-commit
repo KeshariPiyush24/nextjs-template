@@ -2,17 +2,17 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # Get list of staged files
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=d | grep -E '\.(js|jsx|ts|tsx)$')
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=d | grep -E '\.(js|jsx|ts|tsx|json|mjs|md)$')
 
 if [ -n "$STAGED_FILES" ]; then
     echo "Linting staged files..."
-    echo "$STAGED_FILES" | xargs npx eslint --config eslint.config.mjs --fix || {
+    echo "$STAGED_FILES" | xargs bun run eslint --config eslint.config.mjs 2>&1 || {
         echo "ESLint failed, commit aborted"
         exit 1
     }
     
     echo "Formatting staged files..."
-    echo "$STAGED_FILES" | xargs npx prettier --write || {
+    echo "$STAGED_FILES" | xargs bun run prettier --write 2>&1 || {
         echo "Prettier failed, commit aborted"
         exit 1
     }
